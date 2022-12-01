@@ -35,14 +35,20 @@ app.post('api/notes', (req, res) => {
     const newNote = req.body;
     newNote.id = uuid();
     notes.push(newNote);
-    fs.writeFileSync('./dp/db.json', JSON.stringify);
+    fs.writeFile('./db/db.json', (newNote), (err) => {
+        if (err)
+            console.log(err);
+        else {
+            console.log("Note Recorded Successfully")
+        }
+    });
     res.json(notes);
 
 })
 
 
 app.listen(PORT, function () {
-    console.log(`App listening on PORT${PORT}`)
+    console.log(`App listening on PORT ${PORT}`)
 
 
 });
