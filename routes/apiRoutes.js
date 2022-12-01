@@ -3,7 +3,7 @@ const store = require('../db/store');
 
 //API Routes
 //GET '/api/notes' responds with notes stored in the database
-router.get('/api/notes', (req, res) => {
+router.get('/notes', (req, res) => {
     store
         .getNotes()
         .then((notes) => {
