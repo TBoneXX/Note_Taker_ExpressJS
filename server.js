@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+const apiRoutes = require('./routes/apiRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
+
 const PORT = process.env.PORT || 3001;
 const fs = require('fs');
 const path = require('path');
@@ -17,34 +20,8 @@ app.use(express.json());
 //STATIC Middleware
 app.use(express.static('public'));
 
-//HTML Routes
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/notes.html'));
-});
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
 
-//API Routes
-app.get('/api/notes', (req, res) => {
-    res.json(notes.slice(1));
-});
-
-app.post('api/notes', (req, res) => {
-    const newNote = req.body;
-    newNote.id = uuid();
-    notes.push(newNote);
-    fs.writeFile('./db/db.json', (newNote), (err) => {
-        if (err)
-            console.log(err);
-        else {
-            console.log("Note Recorded Successfully")
-        }
-    });
-    res.json(notes);
-
-})
 
 
 app.listen(PORT, function () {
