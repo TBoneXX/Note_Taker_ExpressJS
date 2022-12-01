@@ -50,6 +50,13 @@ class Store {
 
     }
 
+    removeNote(id) {
+     // Retrieves notes and removes the note with the proper id, returns remaining notes
+     return this.getNotes()
+        .then((notes) => notes.filter((note) => note.id !== id))   
+        .then((filteredNotes) => this.write(filteredNotes));
+    }
+
 }
 
 module.exports = new Store();
