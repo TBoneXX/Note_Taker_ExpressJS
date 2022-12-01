@@ -1,22 +1,24 @@
 const router =  require('express').Router();
-
+const store = require('../db/store');
 
 //API Routes
+//GET '/api/notes' responds with notes stored in the database
 router.get('/api/notes', (req, res) => {
-    res.json(notes.slice(1));
+    store
+        .getNotes()
+        .then((notes) => {
+            return res.json(notes);
+        })
+        .catch((err) => res.status(500).json(err));
+}); 
+
+router.post('/notes', (req, res) => {
+    store   
+        .addNote(req.body)
+        .then((note) => res.json(note))
+        .catch((err) => res.status(500).json(err));
 });
+    
 
-router.post('api/notes', (req, res) => {
-    const newNote = req.body;
-    newNote.id = uuid();
-    notes.push(newNote);
-    fs.writeFile('./db/db.json', (newNote), (err) => {
-        if (err)
-            console.log(err);
-        else {
-            console.log("Note Recorded Successfully")
-        }
-    });
-    res.json(notes);
 
-})
+module.exports = router;
