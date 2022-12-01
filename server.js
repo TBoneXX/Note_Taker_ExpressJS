@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const fs = require('fs');
 const path = require('path');
 
@@ -39,3 +39,10 @@ app.post('api/notes', (req, res) => {
     res.json(notes);
 
 })
+
+
+app.listen(PORT, function () {
+    console.log(`App listening on PORT${PORT}`)
+
+
+});
