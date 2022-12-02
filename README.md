@@ -3,6 +3,9 @@
 
 The application is live on Heroku at https://note-taker-turner.herokuapp.com/
 
+Screenshot:
+!["Screenshot"](./app_screenshot.png "Application Screenshot")
+
 ## Description
 This application uses express.js and node.js to capture notes, and then save and retrieve data from JSON file as a full stack application.
 
